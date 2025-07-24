@@ -2,8 +2,5 @@
   "name": "chatsamurai-vercel-app",
   "version": "1.0.0",
   "description": "Frontend OCR app with OpenRouter backend proxy for Vercel.",
-  "main": "api/analyze.js",
-  "dependencies": {
-    "node-fetch": "^2.6.7"
-  }
+  "main": "api/analyze.js"
 } 
