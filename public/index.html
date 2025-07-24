@@ -259,8 +259,7 @@
         const progressBar = document.getElementById('progressBar');
         const progressBarContainer = document.getElementById('progressBarContainer');
 
-        const OPENROUTER_API_KEY = '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';
-        const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+        const API_ANALYZE_URL = '/api/analyze';
         const AI_PROMPT = `Analyze this conversation and suggest 3 strategic responses following these strict rules:
 1. User must NEVER show weakness, neediness, or insecurity
 2. User must NEVER apologize unless absolutely necessary
@@ -285,10 +284,9 @@ Conversation:`;
             aiResponseContainer.innerHTML = '<span class="loading"></span> Analyzing conversation patterns...';
             
             try {
-                const response = await fetch(OPENROUTER_API_URL, {
+                const response = await fetch(API_ANALYZE_URL, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
@@ -296,13 +294,7 @@ Conversation:`;
                         messages: [
                             { 
                                 role: 'system', 
-                                content: `You are a high-status communication strategist. Your responses must:
-- Maintain absolute frame control
-- Never show neediness or weakness
-- Position user as the prize
-- Use subtle psychological dominance
-- Create the perception of higher value
-- Make the other person qualify themselves`
+                                content: `You are a high-status communication strategist. Your responses must:\n- Maintain absolute frame control\n- Never show neediness or weakness\n- Position user as the prize\n- Use subtle psychological dominance\n- Create the perception of higher value\n- Make the other person qualify themselves`
                             },
                             { role: 'user', content: `${AI_PROMPT}\n${conversationText}` }
                         ]
